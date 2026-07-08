@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Acceso Estudiantes</title>
+    <link rel="stylesheet" href="{% static 'landing/css/style.css' %}">
+</head>
+<body>
+
+<div class="fondo-superior"></div>
+
+<div class="login-card">
+
+    <div class="logo-box">
+        <div class="logo-icon">🎓</div>
+        <h2>INSTITUTO TECNOLÓGICO</h2>
+        <h3>PLATAFORMA ESTUDIANTIL</h3>
+        <p>Campus Apizaco</p>
+    </div>
+
+    <h1>Bienvenido</h1>
+    <p class="texto">
+        Ingresa tus credenciales para acceder a la plataforma académica
+    </p>
+
+    <form>
+        <label>Número de Control</label>
+        <input type="text" placeholder="Ingresa tu número de control">
+
+        <label>Contraseña</label>
+        <div class="password-box">
+            <input type="password" id="password" placeholder="Ingresa tu contraseña">
+            <span onclick="mostrarPassword()">👁</span>
+        </div>
+
+        <button type="button" onclick="iniciarSesion()">Iniciar sesión</button>
+    </form>
+
+    <hr>
+
+    <a class="soporte" href="#">? Soporte académico</a>
+
+</div>
+
+<script src="{% static 'landing/js/script.js' %}"></script>
+</body>
+</html>

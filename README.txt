@@ -28,3 +28,5 @@ Autor: Noe Bautista Bautista
 Práctica de Git y GitHub usando WSL
 Fecha: 09/07/2026
 ======================================
+
+Versión 1.1 - Primer cambio realizado desde la rama saske/inicio-proyecto.

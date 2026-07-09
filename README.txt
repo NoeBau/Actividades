@@ -21,3 +21,10 @@ Si Django no está instalado, ejecuta:
 
    pip install django
 Proyecto actualizado desde WSL usando rama saske/desarrollo
+
+======================================
+Proyecto Proy26
+Autor: Noe Bautista Bautista
+Práctica de Git y GitHub usando WSL
+Fecha: 09/07/2026
+======================================

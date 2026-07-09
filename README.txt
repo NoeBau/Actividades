@@ -20,3 +20,4 @@ Nota:
 Si Django no está instalado, ejecuta:
 
    pip install django
+Proyecto actualizado desde WSL usando rama saske/desarrollo

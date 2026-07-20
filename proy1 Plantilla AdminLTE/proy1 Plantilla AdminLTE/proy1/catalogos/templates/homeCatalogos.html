@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="card">
+        
+        <div class="card-header bg-primary text-white">
+            <h3>Catálogos</h3>
+        </div>
+
+        <div class="card-body">
+
+            <div class="row">
+
+                <div class="col-md-4 mb-3">
+                    <div class="card shadow">
+                        <div class="card-body text-center">
+                            <h4>Carreras</h4>
+                            <p>Administración de carreras</p>
+
+                            <a href="{% url 'carreraListas' %}" class="btn btn-primary">
+                                Ver Carreras
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <div class="card shadow">
+                        <div class="card-body text-center">
+                            <h4>Planes</h4>
+                            <p>Administración de planes</p>
+
+                            <a href="#" class="btn btn-success">
+                                Ver Planes
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <div class="card shadow">
+                        <div class="card-body text-center">
+                            <h4>Materias</h4>
+                            <p>Administración de materias</p>
+
+                            <a href="#" class="btn btn-warning">
+                                Ver Materias
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

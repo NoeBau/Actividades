@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block titulo %}
+            Mi Sistema
+        {% endblock %}
+    </title>
+</head>
+<body>
+    {% block menu %}
+        <a href="{% url 'index' %}">Inicio</a>
+        <a href="{% url 'homeCatalogos' %}">Catalogos</a>
+        <a href="{% url 'homeInscripcion' %}">Inscripciones</a>
+    {% endblock %}
+
+    {% block principal %}
+        <h1>Home de la plantilla base... </h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, ad aliquam, reiciendis doloremque consectetur animi corporis ut quod dignissimos possimus labore. Porro quam delectus nobis voluptate incidunt eius natus iure.</p>
+    {% endblock %}
+
+    {% block pie %}
+        <h4>Footer de la plantilla base</h4>
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,197 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Lista de vehículos
+{% endblock %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <div>
+        <h1 class="fw-bold mb-1">
+            Vehículos
+        </h1>
+
+        <p class="text-secondary mb-0">
+            Consulta y administra los vehículos registrados
+        </p>
+    </div>
+
+    <a
+        href="{% url 'crear' %}"
+        class="btn btn-primary"
+    >
+        <i class="bi bi-plus-circle me-1"></i>
+        Registrar vehículo
+    </a>
+
+</div>
+
+<div class="card">
+
+    <div class="card-body">
+
+        <form method="get" class="row g-2 mb-4">
+
+            <div class="col-md-10">
+                <input
+                    type="search"
+                    name="q"
+                    value="{{ consulta }}"
+                    class="form-control"
+                    placeholder="Buscar por marca, modelo, placa o color"
+                >
+            </div>
+
+            <div class="col-md-2 d-grid">
+                <button class="btn btn-dark">
+                    <i class="bi bi-search me-1"></i>
+                    Buscar
+                </button>
+            </div>
+
+        </form>
+
+        <div class="table-responsive">
+
+            <table class="table table-hover">
+
+                <thead>
+                    <tr>
+                        <th>Placa</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Año</th>
+                        <th>Color</th>
+                        <th>Estado</th>
+                        <th class="text-center">Acciones</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% for vehiculo in vehiculos %}
+                        <tr>
+                            <td class="fw-semibold">
+                                {{ vehiculo.placa }}
+                            </td>
+
+                            <td>
+                                {{ vehiculo.marca }}
+                            </td>
+
+                            <td>
+                                {{ vehiculo.modelo }}
+                            </td>
+
+                            <td>
+                                {{ vehiculo.anio }}
+                            </td>
+
+                            <td>
+                                {{ vehiculo.color }}
+                            </td>
+
+                            <td>
+                                {% if vehiculo.activo %}
+                                    <span class="badge text-bg-success">
+                                        Activo
+                                    </span>
+                                {% else %}
+                                    <span class="badge text-bg-secondary">
+                                        Inactivo
+                                    </span>
+                                {% endif %}
+                            </td>
+
+                            <td class="text-center">
+
+                                <a
+                                    href="{% url 'editar' vehiculo.id %}"
+                                    class="btn btn-warning btn-sm"
+                                >
+                                    <i class="bi bi-pencil-square"></i>
+                                    Editar
+                                </a>
+
+                                <a
+                                    href="{% url 'eliminar' vehiculo.id %}"
+                                    class="btn btn-danger btn-sm"
+                                >
+                                    <i class="bi bi-trash"></i>
+                                    Eliminar
+                                </a>
+
+                            </td>
+                        </tr>
+
+                    {% empty %}
+
+                        <tr>
+                            <td
+                                colspan="7"
+                                class="text-center py-5"
+                            >
+                                <i
+                                    class="bi bi-car-front fs-1 text-secondary"
+                                ></i>
+
+                                <p class="text-secondary mt-2 mb-0">
+                                    No se encontraron vehículos.
+                                </p>
+                            </td>
+                        </tr>
+
+                    {% endfor %}
+
+                </tbody>
+            </table>
+
+        </div>
+
+        {% if vehiculos.paginator.num_pages > 1 %}
+
+            <nav class="mt-4">
+
+                <ul class="pagination justify-content-center">
+
+                    {% if vehiculos.has_previous %}
+                        <li class="page-item">
+                            <a
+                                class="page-link"
+                                href="?q={{ consulta }}&page={{ vehiculos.previous_page_number }}"
+                            >
+                                Anterior
+                            </a>
+                        </li>
+                    {% endif %}
+
+                    <li class="page-item active">
+                        <span class="page-link">
+                            Página {{ vehiculos.number }}
+                            de {{ vehiculos.paginator.num_pages }}
+                        </span>
+                    </li>
+
+                    {% if vehiculos.has_next %}
+                        <li class="page-item">
+                            <a
+                                class="page-link"
+                                href="?q={{ consulta }}&page={{ vehiculos.next_page_number }}"
+                            >
+                                Siguiente
+                            </a>
+                        </li>
+                    {% endif %}
+
+                </ul>
+
+            </nav>
+
+        {% endif %}
+
+    </div>
+</div>
+
+{% endblock %}

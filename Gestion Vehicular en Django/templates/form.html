@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {{ titulo }}
+{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+    <div class="col-lg-8">
+
+        <div class="card">
+
+            <div class="card-header bg-white py-3">
+
+                <h3 class="fw-bold mb-0">
+                    <i class="bi bi-car-front me-2"></i>
+                    {{ titulo }}
+                </h3>
+
+            </div>
+
+            <div class="card-body p-4">
+
+                <form method="post" novalidate>
+
+                    {% csrf_token %}
+
+                    {% if form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            {{ form.non_field_errors }}
+                        </div>
+                    {% endif %}
+
+                    <div class="row g-3">
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">
+                                Marca
+                            </label>
+
+                            {{ form.marca }}
+
+                            {% for error in form.marca.errors %}
+                                <small class="text-danger">
+                                    {{ error }}
+                                </small>
+                            {% endfor %}
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">
+                                Modelo
+                            </label>
+
+                            {{ form.modelo }}
+
+                            {% for error in form.modelo.errors %}
+                                <small class="text-danger">
+                                    {{ error }}
+                                </small>
+                            {% endfor %}
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">
+                                Año
+                            </label>
+
+                            {{ form.anio }}
+
+                            {% for error in form.anio.errors %}
+                                <small class="text-danger">
+                                    {{ error }}
+                                </small>
+                            {% endfor %}
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">
+                                Placa
+                            </label>
+
+                            {{ form.placa }}
+
+                            {% for error in form.placa.errors %}
+                                <small class="text-danger">
+                                    {{ error }}
+                                </small>
+                            {% endfor %}
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">
+                                Color
+                            </label>
+
+                            {{ form.color }}
+
+                            {% for error in form.color.errors %}
+                                <small class="text-danger">
+                                    {{ error }}
+                                </small>
+                            {% endfor %}
+                        </div>
+
+                        <div class="col-md-6 d-flex align-items-center">
+                            <div class="form-check mt-4">
+                                {{ form.activo }}
+
+                                <label class="form-check-label fw-semibold">
+                                    Vehículo activo
+                                </label>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <hr class="my-4">
+
+                    <div class="d-flex justify-content-end gap-2">
+
+                        <a
+                            href="{% url 'lista' %}"
+                            class="btn btn-outline-secondary"
+                        >
+                            Cancelar
+                        </a>
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary"
+                        >
+                            <i class="bi bi-floppy me-1"></i>
+                            {{ texto_boton }}
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

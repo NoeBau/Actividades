@@ -1,0 +1,278 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+
+    <title>
+        {% block title %}
+            Sistema de Agua Potable
+        {% endblock %}
+    </title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{% static 'usuarios/css/estilos.css' %}"
+    >
+</head>
+
+<body>
+
+    <aside class="sidebar" id="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">
+                <i class="bi bi-droplet-fill"></i>
+            </div>
+
+            <div class="brand-text">
+                <strong>Agua Potable</strong>
+                <small>Guadalupe Tlachco</small>
+            </div>
+        </div>
+
+        <div class="sidebar-user">
+            <div class="user-avatar">
+                <i class="bi bi-person-fill"></i>
+            </div>
+
+            <div>
+                <strong>
+                    {% if request.user.is_authenticated %}
+                        {{ request.user.username }}
+                    {% else %}
+                        Administrador
+                    {% endif %}
+                </strong>
+
+                <span>
+                    <i class="bi bi-circle-fill"></i>
+                    En línea
+                </span>
+            </div>
+        </div>
+
+        <nav class="sidebar-menu">
+
+            <p class="menu-title">
+                MENÚ PRINCIPAL
+            </p>
+
+            <a
+                href="{% url 'usuarios:dashboard' %}"
+                class="menu-link active"
+            >
+                <i class="bi bi-speedometer2"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a
+    href="{% url 'usuarios:lista_usuarios' %}"
+    class="menu-link"
+>
+    <i class="bi bi-people-fill"></i>
+    <span>Usuarios</span>
+</a>
+
+            <a href="#" class="menu-link">
+                <i class="bi bi-house-door-fill"></i>
+                <span>Tomas de agua</span>
+            </a>
+
+            <a href="#" class="menu-link">
+                <i class="bi bi-speedometer"></i>
+                <span>Medidores</span>
+            </a>
+
+            <a href="#" class="menu-link">
+                <i class="bi bi-journal-text"></i>
+                <span>Lecturas</span>
+            </a>
+
+            <a href="#" class="menu-link">
+                <i class="bi bi-receipt"></i>
+                <span>Recibos</span>
+            </a>
+
+            <a href="#" class="menu-link">
+                <i class="bi bi-cash-coin"></i>
+                <span>Pagos</span>
+            </a>
+
+            <a href="#" class="menu-link">
+                <i class="bi bi-exclamation-triangle-fill"></i>
+                <span>Adeudos</span>
+            </a>
+
+            <p class="menu-title mt-4">
+                INFORMACIÓN
+            </p>
+
+            <a href="#" class="menu-link">
+                <i class="bi bi-bar-chart-fill"></i>
+                <span>Reportes</span>
+            </a>
+
+            <a href="#" class="menu-link">
+                <i class="bi bi-graph-up-arrow"></i>
+                <span>Estadísticas</span>
+            </a>
+
+            <a href="/admin/" class="menu-link">
+                <i class="bi bi-gear-fill"></i>
+                <span>Administración</span>
+            </a>
+
+        </nav>
+
+    </aside>
+
+    <div class="page-wrapper">
+
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <button
+                    class="sidebar-toggle"
+                    type="button"
+                    id="sidebarToggle"
+                >
+                    <i class="bi bi-list"></i>
+                </button>
+
+                <div>
+                    <h1>
+                        Sistema de Agua Potable
+                    </h1>
+
+                    <p>
+                        Administración y control del servicio
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="topbar-right">
+
+                <button class="topbar-button" type="button">
+                    <i class="bi bi-bell-fill"></i>
+                    <span class="notification-badge">0</span>
+                </button>
+
+                <div class="admin-profile">
+
+                    <div class="admin-profile-icon">
+                        <i class="bi bi-person-circle"></i>
+                    </div>
+
+                    <div class="admin-profile-info">
+                        <strong>
+                            {% if request.user.is_authenticated %}
+                                {{ request.user.username }}
+                            {% else %}
+                                Administrador
+                            {% endif %}
+                        </strong>
+
+                        <span>Administrador</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+        <main class="main-content">
+
+            <div class="content-header">
+
+                <div>
+                    <h2>
+                        {% block page_title %}
+                            Panel principal
+                        {% endblock %}
+                    </h2>
+
+                    <p>
+                        {% block page_description %}
+                            Información general del sistema
+                        {% endblock %}
+                    </p>
+                </div>
+
+                <nav class="breadcrumb-area">
+                    <a href="{% url 'usuarios:dashboard' %}">
+                        Inicio
+                    </a>
+
+                    <span>/</span>
+
+                    <strong>
+                        {% block breadcrumb %}
+                            Dashboard
+                        {% endblock %}
+                    </strong>
+                </nav>
+
+            </div>
+
+            {% block content %}
+            {% endblock %}
+
+        </main>
+
+        <footer class="footer">
+
+            <div>
+                <strong>
+                    Sistema de Agua Potable
+                </strong>
+
+                <span>
+                    Comunidad de Guadalupe Tlachco
+                </span>
+            </div>
+
+            <div>
+                Versión 1.0
+            </div>
+
+        </footer>
+
+    </div>
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    ></script>
+
+    <script>
+        const sidebarToggle = document.getElementById("sidebarToggle");
+        const sidebar = document.getElementById("sidebar");
+        const pageWrapper = document.querySelector(".page-wrapper");
+
+        sidebarToggle.addEventListener("click", function () {
+            sidebar.classList.toggle("sidebar-hidden");
+            pageWrapper.classList.toggle("page-expanded");
+        });
+    </script>
+
+</body>
+</html>

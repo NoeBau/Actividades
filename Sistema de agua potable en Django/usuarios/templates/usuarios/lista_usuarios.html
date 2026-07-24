@@ -1,0 +1,184 @@
+{% extends "usuarios/base.html" %}
+
+{% block title %}
+    Usuarios | Sistema de Agua Potable
+{% endblock %}
+
+{% block page_title %}
+    Usuarios del servicio
+{% endblock %}
+
+{% block page_description %}
+    Consulta y administración de usuarios registrados
+{% endblock %}
+
+{% block breadcrumb %}
+    Usuarios
+{% endblock %}
+
+{% block content %}
+
+<div class="dashboard-panel">
+
+    <div class="users-toolbar">
+
+        <form method="get" class="search-form">
+
+            <div class="input-group">
+                <span class="input-group-text">
+                    <i class="bi bi-search"></i>
+                </span>
+
+                <input
+                    type="text"
+                    name="buscar"
+                    class="form-control"
+                    placeholder="Buscar por contrato, nombre, dirección o teléfono"
+                    value="{{ busqueda }}"
+                >
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                >
+                    Buscar
+                </button>
+
+                {% if busqueda %}
+                    <a
+                        href="{% url 'usuarios:lista_usuarios' %}"
+                        class="btn btn-outline-secondary"
+                    >
+                        Limpiar
+                    </a>
+                {% endif %}
+            </div>
+
+        </form>
+
+        <a
+            href="/admin/usuarios/usuarioservicio/add/"
+            class="btn btn-success"
+        >
+            <i class="bi bi-person-plus-fill"></i>
+            Nuevo usuario
+        </a>
+
+    </div>
+
+    <div class="table-responsive mt-4">
+
+        <table class="table table-hover align-middle users-table">
+
+            <thead>
+                <tr>
+                    <th>Contrato</th>
+                    <th>Nombre</th>
+                    <th>Dirección</th>
+                    <th>Teléfono</th>
+                    <th>Servicio</th>
+                    <th>Estado</th>
+                    <th>Fecha de alta</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for usuario in usuarios %}
+
+                    <tr>
+                        <td>
+                            <strong>
+                                {{ usuario.numero_contrato }}
+                            </strong>
+                        </td>
+
+                        <td>
+                            {{ usuario.nombre }}
+                        </td>
+
+                        <td>
+                            {{ usuario.direccion }}
+                        </td>
+
+                        <td>
+                            {{ usuario.telefono|default:"Sin teléfono" }}
+                        </td>
+
+                        <td>
+                            {{ usuario.get_tipo_servicio_display }}
+                        </td>
+
+                        <td>
+                            {% if usuario.estado == "ACTIVO" %}
+                                <span class="status-badge status-active">
+                                    Activo
+                                </span>
+
+                            {% elif usuario.estado == "SUSPENDIDO" %}
+                                <span class="status-badge status-suspended">
+                                    Suspendido
+                                </span>
+
+                            {% else %}
+                                <span class="status-badge status-cancelled">
+                                    Cancelado
+                                </span>
+                            {% endif %}
+                        </td>
+
+                        <td>
+                            {{ usuario.fecha_alta|date:"d/m/Y" }}
+                        </td>
+
+                        <td>
+                            <div class="action-buttons">
+
+                                <a
+                                    href="/admin/usuarios/usuarioservicio/{{ usuario.id }}/change/"
+                                    class="btn btn-sm btn-outline-primary"
+                                    title="Editar"
+                                >
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+
+                                <a
+                                    href="/admin/usuarios/usuarioservicio/{{ usuario.id }}/delete/"
+                                    class="btn btn-sm btn-outline-danger"
+                                    title="Eliminar"
+                                >
+                                    <i class="bi bi-trash-fill"></i>
+                                </a>
+
+                            </div>
+                        </td>
+                    </tr>
+
+                {% empty %}
+
+                    <tr>
+                        <td colspan="8" class="empty-table">
+                            <i class="bi bi-people"></i>
+
+                            <p>
+                                No se encontraron usuarios registrados.
+                            </p>
+                        </td>
+                    </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <div class="table-summary">
+        Total de registros: {{ usuarios|length }}
+    </div>
+
+</div>
+
+{% endblock %}

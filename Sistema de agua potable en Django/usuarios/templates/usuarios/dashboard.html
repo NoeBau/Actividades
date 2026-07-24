@@ -1,0 +1,154 @@
+{% extends "usuarios/base.html" %}
+
+{% block title %}
+    Dashboard | Sistema de Agua Potable
+{% endblock %}
+
+{% block content %}
+
+{% load static %}
+
+<div class="hero-banner">
+    <img
+        src="{% static 'usuarios/img/image.jpg' %}"
+        alt="Guadalupe Tlachco"
+    >
+
+    <div class="hero-overlay">
+        <h1>Sistema de Agua Potable</h1>
+
+        <p>
+            Comunidad de Guadalupe Tlachco
+        </p>
+    </div>
+</div>
+
+<div class="page-heading">
+    <div>
+        <h2>Dashboard</h2>
+
+        <p>
+            Resumen general de los usuarios del servicio.
+        </p>
+    </div>
+
+    <a href="/admin/usuarios/usuarioservicio/add/"
+       class="btn btn-primary">
+        <i class="bi bi-person-plus-fill"></i>
+        Nuevo usuario
+    </a>
+</div>
+
+<div class="row g-4">
+
+    <div class="col-12 col-md-6 col-xl-3">
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="bi bi-people-fill"></i>
+            </div>
+
+            <div>
+                <span>Total de usuarios</span>
+                <h3>{{ total_usuarios }}</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-md-6 col-xl-3">
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="bi bi-check-circle-fill"></i>
+            </div>
+
+            <div>
+                <span>Usuarios activos</span>
+                <h3>{{ usuarios_activos }}</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-md-6 col-xl-3">
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="bi bi-pause-circle-fill"></i>
+            </div>
+
+            <div>
+                <span>Suspendidos</span>
+                <h3>{{ usuarios_suspendidos }}</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-md-6 col-xl-3">
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="bi bi-x-circle-fill"></i>
+            </div>
+
+            <div>
+                <span>Cancelados</span>
+                <h3>{{ usuarios_cancelados }}</h3>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="dashboard-panel mt-4">
+    <div class="panel-header">
+        <div>
+            <h3>Resumen del sistema</h3>
+
+            <p>
+                Los siguientes módulos se conectarán
+                progresivamente.
+            </p>
+        </div>
+    </div>
+
+    <div class="row g-3">
+
+        <div class="col-12 col-md-6 col-xl-4">
+            <div class="module-card">
+                <i class="bi bi-speedometer"></i>
+
+                <div>
+                    <h4>Medidores</h4>
+                    <p>
+                        Registro y control de medidores.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-xl-4">
+            <div class="module-card">
+                <i class="bi bi-journal-text"></i>
+
+                <div>
+                    <h4>Lecturas</h4>
+                    <p>
+                        Captura del consumo mensual.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-xl-4">
+            <div class="module-card">
+                <i class="bi bi-cash-coin"></i>
+
+                <div>
+                    <h4>Pagos</h4>
+                    <p>
+                        Administración de cobros y adeudos.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
